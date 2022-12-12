@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Laravel\Sanctum\PersonalAccessToken;
 
 class AuthController extends Controller
 {
@@ -44,7 +45,6 @@ class AuthController extends Controller
             return response()->json([
                 'status' => true,
                 'message' => 'User Created Successfully',
-                'token' => $user->createToken("API TOKEN")->plainTextToken
             ], 200);
 
         } catch (\Throwable $th) {
@@ -100,11 +100,43 @@ class AuthController extends Controller
         }
     }
 
+    public function logout(Request $request)
+    {
+        try {
+            $accessToken = $request->bearerToken();
+            $token = PersonalAccessToken::findToken($accessToken);
+            $token->delete();
+
+            return response()->json([
+                'status' => true,
+                'message' => 'User Logged Out Successfully',
+            ], 200);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage()
+            ], 500);
+        }
+    }
+
+    /**
+     * It returns the user object of the currently authenticated user
+     * 
+     * @param Request request The incoming request object.
+     * 
+     * @return User - The user object.
+     */
     public function me(Request $request)
     {
         return $request->user();
     }
 
+    /**
+     * If the user is not logged in, return a JSON response with a status of false and a message of
+     * Unauthorized.
+     * 
+     * @return json - A JSON response with a status of false and a message of Unauthorized.
+     */
     public function unauthorized()
     {
         return response()->json([
