@@ -1,6 +1,6 @@
 <h1 align="center">Sanctum App - Laravel</h1>
 
->Project status: under development ⏳
+>Project status: ✔️ Finished!
 
 #
 
@@ -23,24 +23,9 @@ This project was developed for the discipline of Development WEB II, the course 
   <img src="https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white"/>
 </p>
 
-
-## Functionalities 🔧
-
-✔️ 
-
-
-## Observations 👀
-
-This project is not yet in its final version.
-
-
-## Future enhancements 🚀
-
-✔️ 
-
 ## License 🔑
 
-The [MIT License]() (MIT)
+The [MIT License](https://github.com/rafandoo/sanctum-app/blob/be0bf5dd8ba4b9671b5d108693b447a10f48fe1b/LICENSE) (MIT)
 
 Copyright :copyright: 2022 - Rafael Camargo & Natasha Busnardo
 
